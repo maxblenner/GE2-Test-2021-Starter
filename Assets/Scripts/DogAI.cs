@@ -15,7 +15,14 @@ public class DogAI : MonoBehaviour
     {
         distance = Vector3.Distance(target.transform.position, parentObj.transform.position);
 
-        if (distance >= 5f)
+        Vector3 targetDirection = target.transform.position - transform.position;
+        float singleStep = speed * Time.deltaTime;
+
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
+        if (distance >= 3f)
         {
             transform.position = Vector3.MoveTowards(parentObj.transform.position, target.transform.position, speed * Time.deltaTime);
         }
