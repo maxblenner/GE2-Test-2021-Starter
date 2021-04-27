@@ -13,6 +13,7 @@ public class PickUp : MonoBehaviour
     public GameObject item;
     public GameObject tempParent;
     public bool isHolding = false;
+    public bool isThrown = false;
 
 
     // Update is called once per frame
@@ -35,6 +36,7 @@ public class PickUp : MonoBehaviour
             {
                 item.GetComponent<Rigidbody>().AddForce(tempParent.transform.forward * throwForce);
                 isHolding = false;
+                isThrown = true;
             }
         }
         else
@@ -48,7 +50,7 @@ public class PickUp : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (distance <= 5f)
+        if (distance <= 10f)
         {
             isHolding = true;
             item.GetComponent<Rigidbody>().useGravity = false;

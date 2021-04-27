@@ -8,25 +8,34 @@ public class DogAI : MonoBehaviour
     public GameObject parentObj;
     public GameObject target;
 
+    private PickUp bool_script;
+
     float distance;
     Vector3 objPos;
+
+
 
     void Update()
     {
         distance = Vector3.Distance(target.transform.position, parentObj.transform.position);
 
-        Vector3 targetDirection = target.transform.position - transform.position;
-        float singleStep = speed * Time.deltaTime;
+        bool_script = target.GetComponent<PickUp>();
 
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+        if(bool_script.isThrown == true)
+        { 
 
-        transform.rotation = Quaternion.LookRotation(newDirection);
+            Vector3 targetDirection = target.transform.position - transform.position;
+            float singleStep = speed * Time.deltaTime;
 
-        if (distance >= 3f)
-        {
-            transform.position = Vector3.MoveTowards(parentObj.transform.position, target.transform.position, speed * Time.deltaTime);
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+
+            transform.rotation = Quaternion.LookRotation(newDirection);
+
+            if (distance >= 3f)
+            {
+                transform.position = Vector3.MoveTowards(parentObj.transform.position, target.transform.position, speed * Time.deltaTime);
+            }
         }
-
     }
 
 }
