@@ -31,7 +31,7 @@ public class PickUp : MonoBehaviour
             item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             item.transform.SetParent(tempParent.transform);
 
-            if(Input.GetMouseButtonDown(1))
+            if(Input.GetKeyDown("space"))
             {
                 item.GetComponent<Rigidbody>().AddForce(tempParent.transform.forward * throwForce);
                 isHolding = false;
