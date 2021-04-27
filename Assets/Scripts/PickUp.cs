@@ -37,6 +37,8 @@ public class PickUp : MonoBehaviour
                 item.GetComponent<Rigidbody>().AddForce(tempParent.transform.forward * throwForce);
                 isHolding = false;
                 isThrown = true;
+
+
             }
         }
         else
